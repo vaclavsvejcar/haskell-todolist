@@ -1,0 +1,62 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: d5be1eb8c2b959636fac1707f30f3f105d57573f88f6ceab7281b9ede144dcb6
+
+name:           haskell-todolist
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/haskell-todolist#readme>
+homepage:       https://github.com/githubuser/haskell-todolist#readme
+bug-reports:    https://github.com/githubuser/haskell-todolist/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2019 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/haskell-todolist
+
+library
+  exposed-modules:
+      TodoList
+  other-modules:
+      Paths_haskell_todolist
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable haskell-todolist-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_haskell_todolist
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , haskell-todolist
+  default-language: Haskell2010
+
+test-suite haskell-todolist-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_haskell_todolist
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , haskell-todolist
+  default-language: Haskell2010
