@@ -1,16 +1,8 @@
 module TodoList where
 
 import           System.IO
-
-type Item = String
-type Items = [Item]
-
-data Command
-  = AddItem String
-  | MarkAsDone Int
-  | DisplayItems
-  | Help
-  | Quit
+import           Domain
+import           InOut
 
 -- Returns a new list of Items with the new item in it
 addItem :: Item -> Items -> Items
@@ -62,33 +54,36 @@ renderHelp =
     "Commands: a(dd item) - <ITEM NAME>, d(one) <INDEX>, l(list saved items), h(elp), q(uit)"
 
 -- Handles interaction with user
-interactWithUser :: Items -> IO ()
-interactWithUser items = do
-  line <- prompt "> "
+interactWithUser :: IO ()
+interactWithUser = do
+  items <- readFromFile
+  line  <- prompt "> "
   case parseCommand line of
     Right (AddItem item) -> do
       let newItems = addItem item items
       putStrLn ("Item '" ++ item ++ "' added")
-      interactWithUser newItems
+      saveToFile newItems
+      interactWithUser
 
     Right (MarkAsDone index) -> do
       let result = removeItem index items
       case result of
         Left error -> do
           putStrLn ("ERROR: " ++ error)
-          interactWithUser items
+          interactWithUser
         Right newItems -> do
           putStrLn "Done."
-          interactWithUser newItems
+          saveToFile newItems
+          interactWithUser
 
     Right DisplayItems -> do
       putStrLn "Saved items to do:"
       putStrLn (renderItems items)
-      interactWithUser items
+      interactWithUser
 
     Right Help -> do
       renderHelp
-      interactWithUser items
+      interactWithUser
 
     Right Quit -> do
       putStrLn "Bye!"
@@ -96,4 +91,4 @@ interactWithUser items = do
 
     Left error -> do
       putStrLn ("ERROR: " ++ error)
-      interactWithUser items
+      interactWithUser

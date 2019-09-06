@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d5be1eb8c2b959636fac1707f30f3f105d57573f88f6ceab7281b9ede144dcb6
+-- hash: 083e4f34f2eddc90b4a9c14903ea1b12f397ec353d4582d5da6549c4bf39637d
 
 name:           haskell-todolist
 version:        0.1.0.0
@@ -27,6 +27,8 @@ source-repository head
 
 library
   exposed-modules:
+      Domain
+      InOut
       TodoList
   other-modules:
       Paths_haskell_todolist
@@ -34,6 +36,8 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , directory
+    , strict
   default-language: Haskell2010
 
 executable haskell-todolist-exe
@@ -45,7 +49,9 @@ executable haskell-todolist-exe
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , directory
     , haskell-todolist
+    , strict
   default-language: Haskell2010
 
 test-suite haskell-todolist-test
@@ -58,5 +64,7 @@ test-suite haskell-todolist-test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , directory
     , haskell-todolist
+    , strict
   default-language: Haskell2010
