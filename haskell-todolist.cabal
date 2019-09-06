@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 083e4f34f2eddc90b4a9c14903ea1b12f397ec353d4582d5da6549c4bf39637d
+-- hash: 423461b02216457cad53ca0bcaa9d3adbd66f178cad7762fa34af69b3b39d0cb
 
 name:           haskell-todolist
 version:        0.1.0.0
@@ -35,7 +35,9 @@ library
   hs-source-dirs:
       src
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
     , directory
     , strict
   default-language: Haskell2010
@@ -48,7 +50,9 @@ executable haskell-todolist-exe
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
     , directory
     , haskell-todolist
     , strict
@@ -63,7 +67,9 @@ test-suite haskell-todolist-test
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
     , directory
     , haskell-todolist
     , strict

@@ -13,6 +13,8 @@ tests:
 copyright: 2019 Author name here
 maintainer: example@example.com
 dependencies:
+- aeson
+- bytestring
 - strict
 - directory
 - base >= 4.7 && < 5
